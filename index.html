@@ -4,19 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Hello, WebAssembly!</title>
-  <script>
-    const wasm = 'experiment.wasm'
-    fetch(wasm)
-      .then(response => response.arrayBuffer())
-      .then(bytes => WebAssembly.instantiate(bytes, {}))
-      .then(results => {
-        document.getElementById('p').textContent = results.instance.exports.add(1, 2));
-      })
-  </script>
 </head>
 
 <body>
   <p id="p"></p>
+  <script>
+    const wasm = 'experiment.wasm'
+    window.onload = function() {
+      fetch(wasm)
+        .then(response => response.arrayBuffer())
+        .then(bytes => WebAssembly.instantiate(bytes, {}))
+        .then(results => {
+          document.getElementById('p').textContent = results.instance.exports.add(1, 2));
+        })
+    }
+  </script>
 </body>
 
 </html>
