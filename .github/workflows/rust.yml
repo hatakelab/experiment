@@ -21,6 +21,6 @@ jobs:
     - name: Cargo new
       run: cargo new --lib skeleton
     - name: Download artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: artifacts
