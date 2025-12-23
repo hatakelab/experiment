@@ -20,3 +20,7 @@ jobs:
       run: rustup target add wasm32-unknown-unknown
     - name: Cargo new
       run: cargo new --lib skeleton
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: artifacts
