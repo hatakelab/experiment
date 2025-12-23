@@ -16,12 +16,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Rustup
-      run: rustup target add wasm32-unknown-unknown
-    - name: Build
-      run: cargo build --target=wasm32-unknown-unknown --release
-    - name: Download artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: artifacts
-        path: target
+#    - name: Rustup
+#      run: rustup target add wasm32-unknown-unknown
+#    - name: Build
+#      run: cargo build --target=wasm32-unknown-unknown --release
+#    - name: Download artifacts
+#      uses: actions/upload-artifact@v4
+#      with:
+#        name: artifacts
+#        path: target
