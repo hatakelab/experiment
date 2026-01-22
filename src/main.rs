@@ -1,3 +1,5 @@
+mod arithmetic;
+
 fn main() {
-    println!("Hello, world!");
+    arithmetic::methods(10, 6);
 }

@@ -17,7 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build
-      run: cargo run
+      run: cargo build
+    - name: Run
+      run: ./target/debug/experiment.exe
     - name: Download artifacts
       uses: actions/upload-artifact@v4
       with:
