@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build
-      run: cargo run -v
+      run: cargo run
     - name: Download artifacts
       uses: actions/upload-artifact@v4
       with:
