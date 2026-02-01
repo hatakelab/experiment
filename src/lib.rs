@@ -1,5 +1,5 @@
 fn append_s(s: &str) -> &str {
-    &String::from("{}s", s)
+    &format!("{}s", s)
 }
 
 #[cfg(test)]
