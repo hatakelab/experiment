@@ -1,3 +1,4 @@
+#[allow(dead code)]
 fn append_s(s: &str) -> String {
     format!("{}s", s)
 }
@@ -5,9 +6,9 @@ fn append_s(s: &str) -> String {
 fn setsubun(s: &str) -> String {
     let s_s = s.to_string();
     let t: Vec<&str> = s_s.split_whitespace().collect();
-    let n: i16 = t[0].parse().unwrap();
-    let mut k: i16 = t[1].parse().unwrap();
-    let mut ans: i16 = -1;
+    let n: i64 = t[0].parse().unwrap();
+    let mut k: i64 = t[1].parse().unwrap();
+    let mut ans: i64 = -1;
     while k > 0 {
         ans += 1;
         k -= n + ans;
