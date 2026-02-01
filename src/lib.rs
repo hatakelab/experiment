@@ -1,7 +1,8 @@
-#[allow(dead code)]
+/*
 fn append_s(s: &str) -> String {
     format!("{}s", s)
 }
+*/
 
 fn setsubun(s: &str) -> String {
     let s_s = s.to_string();
