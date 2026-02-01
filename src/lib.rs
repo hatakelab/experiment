@@ -3,7 +3,7 @@ fn append_s(s: &str) -> String {
 }
 
 fn setsubun(s: &str) -> String {
-    let t: Vec<&str> = s.to_string().slipt_whitespace().collect();
+    let t: Vec<&str> = s.to_string().split_whitespace().collect();
     let n = t[0].parse().unwrap();
     let mut k = t[1].parse().unwrap();
     let ans = -1;
