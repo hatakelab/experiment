@@ -28,4 +28,4 @@ jobs:
           pip3 install yt-dlp yt-dlp-rajiko
 
       - name: Test of yt-dlp
-        run: yt-dlp -q --no-warnings --no-flat-playlist -O webpage_url --date 20260828
+        run: yt-dlp -q --no-warnings --no-flat-playlist -O webpage_url --date 20260828 https://www.youtube.com/playlist?list=PLxPYUI5vtD6TNW32Yjl2dYirqIaPJSpYL
