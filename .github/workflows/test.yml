@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+  TZ: Asia/Tokyo
+
+jobs:
+  yt-dlp:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install yt-dlp
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install yt-dlp yt-dlp-rajiko
+
+      - name: Test of yt-dlp
+        run: yt-dlp -q --no-warnings --no-flat-playlist -O webpage_url --date 20260828
