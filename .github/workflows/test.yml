@@ -27,10 +27,28 @@ jobs:
           python3 -m pip install --upgrade pip
           pip3 install yt-dlp yt-dlp-rajiko
 
-      - name: Connect VPN
-        uses: womany/vpngate-action@v1
-        with:
-          country: 'Japan'
+      - name: Connect to Japan VPN (VPN Gate)
+        run: |
+          # 1. 必要なツール（OpenVPN）をインストール
+          sudo apt-get update
+          sudo apt-get install -y openvpn openvpn-systemd-resolved
+
+          # 2. 筑波大学 VPN Gate から公開サーバー一覧のCSVを取得
+          curl -sS "https://vpngate.net" > vpn_list.csv
+
+          # 3. CSVから「日本(JP)」のサーバーを探し、OpenVPNの設定（Base64形式）を抽出してデコード
+          # ※一番最初に見つかったスコアの高い日本のサーバーを使用します
+          cat vpn_list.csv | grep ",JP," | head -n 1 | awk -F, '{print $15}' | base64 -d > config.ovpn
+
+          # 4. OpenVPNをバックグラウンドで起動して日本サーバーに接続
+          sudo openvpn --config config.ovpn --daemon
+
+          # 5. 接続が完了するまで少し待つ（15秒）
+          sleep 15
+
+          # 6. IPアドレスが本当に日本に変わったか確認（デバッグ用）
+          echo "Current Public IP Information:"
+          curl -s https://ipinfo.io || true
 
       - name: Test of yt-dlp
         run: yt-dlp wv+wa 'https://tver.jp/episodes/epc1y4j686'
