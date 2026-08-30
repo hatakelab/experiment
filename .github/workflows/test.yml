@@ -27,6 +27,11 @@ jobs:
           python3 -m pip install --upgrade pip
           pip3 install yt-dlp yt-dlp-rajiko
 
+      - name: Connect VPN
+        uses: womany/vpngate-action@v1
+        with:
+          country: 'Japan'
+
       - name: Test of yt-dlp
         run: yt-dlp wv+wa 'https://tver.jp/episodes/epc1y4j686'
 
