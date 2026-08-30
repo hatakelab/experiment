@@ -28,7 +28,7 @@ jobs:
           pip3 install yt-dlp yt-dlp-rajiko
 
       - name: Test of yt-dlp
-        run: yt-dlp wv+wa 'https://cu.tbs.co.jp/episode/28983_2118759_1000165377'
+        run: yt-dlp wv+wa 'https://tver.jp/episodes/epc1y4j686'
 
       - name: Collect
         run: |
