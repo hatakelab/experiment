@@ -11,32 +11,28 @@ env:
   TZ: Asia/Tokyo
 
 jobs:
-  yt-dlp:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install ffmpeg
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
-
-      - name: Install yt-dlp
-        run: |
-          python3 -m pip install --upgrade pip
-          pip3 install yt-dlp yt-dlp-rajiko
-
-      - name: Test of yt-dlp
-        run: yt-dlp https://www.youtube.com/watch?v=8AA-QRI3u-4
+      - uses: actions/checkout@v6
 
       - name: Collect
         run: |
-          mkdir -p dl
-          mv *.{m4a,mp4} dl/ || true
+          mkdir -p radiko
+          echo "Hello world" > radiko/sample.txt
 
-      - name: Upload
-        uses: actions/upload-artifact@v4
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
         with:
-          name: upload
-          path: dl/
+          credentials_json: ${{ secrets.SAVING_KEY }}
+
+      - name: Save from Google Drive
+        uses: wei/rclone@v1
+        env:
+          RCLONE_CONFIG_MYDRIVE_TYPE: drive
+          RCLONE_CONFIG_MYDRIVE_SCOPE: drive
+          RCLONE_CONFIG_MYDRIVE_ROOT_FOLDER_ID: '17wZ5CRm5T1Fgfk3rtzyzO2EcBTUluzZr'
+          RCLONE_CONFIG_MYDRIVE_SERVICE_ACCOUNT_BLANK: true
+        with:
+          args: "copy radiko/ mydrive:"
